@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+     <meta name="description" content="" />
+     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+     <meta name="generator" content="Jekyll v3.8.5" />
+     <title>Welcome Page</title>
+
+     <!-- <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/4.3/examples/dashboard/"
+    /> -->
+     <link rel="stylesheet" href="assests/design.css" />
+     <link rel="stylesheet" href="assests/studentcss.css">
+     <!-- <script src="scripts/utils/util.js"></script>
+     <script src="scripts/crud/model/question.js"></script>
+     <script src="scripts/crud/model/questionoperations.js"></script>
+     <script src="scripts/crud/controller/questioncontroller.js"></script> -->
+     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+     <script src="scripts/utils/firebase.js"></script>
+     <script src="studentCrud/scripts/model/studentModel.js"></script>
+     <script src='studentCrud/scripts/controller/studentController.js'></script>
+     <script src="https://kit.fontawesome.com/203fd6642e.js"></script>
+     
+     <!-- Bootstrap core CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+     <style>
+          .bd-placeholder-img {
+               font-size: 1.125rem;
+               text-anchor: middle;
+               -webkit-user-select: none;
+               -moz-user-select: none;
+               -ms-user-select: none;
+               user-select: none;
+          }
+
+          @media (min-width: 768px) {
+               .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+               }
+          }
+     </style>
+     <!-- Custom styles for this template -->
+     <link href="assests/style.css" rel="stylesheet" />
+</head>
+
+<body>
+     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="index.html">Online Exam</a>
+          <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
+          <ul class="navbar-nav px-3">
+               <li class="nav-item text-nowrap">
+                    <button id="signout" class="btn btn-primary">Sign Out</button>
+               </li>
+          </ul>
+     </nav>
+
+     <div class="container-fluid">
+          <div class="row">
+               <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                         <ul class="nav flex-column">
+                              <li class="nav-item">
+                                   <a class="nav-link ">
+                                        <!-- <span data-feather="home"></span> -->
+                                        <span class="sr-only"></span>Student 
+                                   </a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link"  id="userId" href="#">
+                                        <span data-feather="file"></span>
+                                        
+                                   </a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link" id="userScore" href="#">
+                                        <span data-feather="file"></span>
+                              
+                                   </a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link" id="userResult" href="#">
+                                        <span data-feather="file"></span>
+                              
+                                   </a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link" id="userTime" href="#">
+                                        <span data-feather="file"></span>
+                              
+                                   </a>
+                              </li>
+                              
+                         </ul>
+                    </div>
+               </nav>
+
+               <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div
+                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                         <h1 class="h1">Exam Question</h1>
+                         <div id="crudQuestion"></div>
+                         <div class="btn-toolbar mb-2 mb-md-0">
+                              
+                         </div>
+                    </div>
+                     <p class="style53"><strong>GENERAL RULES</strong></p>
+                    <div id="rules">
+                    <ol start="1" type="1" class="style53">
+                      <li>Only team entries are eligible. </li>
+                      <li>A team shall consist of max two persons</li>
+                      <li>The decision of the quiz-master will be final and will not be       subjected to any change.</li>
+                      <li>The participants shall not be allowed to &nbsp;use mobile or other electronic       instruments.</li>
+                      <li>The questions shall be in the form of multiple choice, True / False       statement, Specific-answer question etc. </li>
+                      <li>Audience &nbsp;shall &nbsp;not give any hints or clues to the       competitors.</li>
+                      <li>Replacement of any participant&nbsp;       of a team is not allowed after registration</li>
+                      <li>Teams selected for the final rounds&nbsp;       will be allowed to give themselves an appropriate name related to       the competition by which they may want to be known </li>
+                    </ol>
+                    <p class="style53"><strong><u>ELIMINATION ROUND</u></strong> <strong>&ndash; (In case more than 6 teams register)on &hellip;&hellip;&hellip;</strong></p>
+                    <ul class="style53">
+                      <li>Each team would  be given a set of question paper containing 25 multiple choice objective type  questions</li>
+                      <li>Time limit - 15  minutes</li>
+                      <li>Only 6 Teams  would be selected for STAGE ROUNDS</li>
+                      <li>In case of tie  between 2 or more teams, further 5 questions would be asked for final selection</li>
+                      <li>The selected  teams shall have to appear for the final round</li>
+                    </ul>
+                    <p class="style53"><strong><u>FINAL QUIZ_ &nbsp;STAGE ROUNDS </u></strong></p>
+                    <p class="style53"><strong>Round 1</strong> : A question will be asked  to a team and if they are unable to answer it will be passed to the next team -  Rounds 4- <strong>24</strong> <strong>questions</strong></p>
+                    <ul class="style53">
+                      <li>Each team would  be asked 4 questions each. ( Objective questions with options) </li>
+                      <li>10 marks for  correct answer <u>and 5 negative marks</u> for wrong answer. </li>
+                      <li>If a team cannot  answer the question, they can pass the question &amp; &nbsp;then the question would be forwarded to the  next team. </li>
+                      <li>Answering time  is only 30 seconds. </li>
+                      <li>Team discussion  is allowed.</li>
+                    </ul>
+                    <p class="style53"><strong>Round 2</strong>: <strong>Rapid Fire Round</strong> : -Each team will be asked 10 questions one after  another in one minutes time-&nbsp; : <strong>60 questions </strong></p>
+                    <ul class="style53">
+                      <li>10 marks for the  correct answer and negative 5 marks for the wrong answer</li>
+                      <li>Answering time  is only 3 seconds </li>
+                      <li>Team discussion  is allowed</li>
+                      <li>If a team cannot  answer the question, they can say pass for the next question. The question will <strong>not</strong> &nbsp;be forwarded to the next team. </li>
+                    </ul>
+                    <p class="style53"><strong>Round 3 &ndash; Buzzer  Round- </strong>A  question will be fired &amp; the team who presses the buzzer first get to  answer first &nbsp;&ndash; <strong>6 Questions </strong> </p>
+                    <ul class="style53">
+                      <li>10 marks for the  correct answer and negative 5 marks for the wrong or if team doesn&rsquo;t after they  press Buzzers. &ndash; No forwarding </li>
+                      <li>Answering time  is only 30 seconds </li>
+                    </ul>
+                    <p class="style53"><strong>Round 4- Audio-visual round </strong><br />
+                      Teams  &nbsp;will be shown clips and will have to  answer. &nbsp;&nbsp;rounds 2 : <strong>12 questions</strong> </p>
+                    <ul class="style53">
+                      <li>10 marks for the  correct answer and negative 5 marks for the wrong answer </li>
+                      <li>Each Team would  be asked 2 audio-visual questions. ( 1 slide in each round )</li>
+                      <li>Answering time  is only 30 seconds. </li>
+                      </ul>
+                  
+                  <p style="text-align:right">
+                       <button id='startExam' class="btn btn-success" style="box-align: right">Start Exam</button>
+                  </p>
+                  <br><br>
+                  <hr></div> 
+          
+           <!----<div id='rules'><pre>
+          <h2>Rules:</h2>
+          <h3> Eligibility and Limitations for Online Track:</h3>
+               Schools/ Junior colleges participating in the contest should be affiliated, registered or recognized by the State
+               or
+               Central education boards as also International boards.
+               School/ Junior colleges desirous of participating in the contest should, prior to participating be registered with
+               us
+               through our website or through our official coordinators..
+               Once the schools and junior colleges register themselves, each participating student therein should register
+               themselves
+               individually for being a part of the contest either directly or through the respective school coordinator.
+               All participating schools/ junior colleges should provide for the exclusive use their participants, a computer lab
+               with
+               a minimum of 10 computers and Internet connectivity with a minimum speed of 512 KBPS (non-shared).
+               Students of Std 11th to 12th from any stream being Science, Commerce or Arts are eligible to participate in senior
+               colleges in the IT “Lion” category.
+               Coordinators of the participating schools cannot invigilate the examination of their schools. They may do so for
+               any
+               other participating school assigned by itolympiad management .
+               For the online exam, each participant shall receive their individual username and password to login individually.
+           <h3>Selection and Results:</h3>
+               Top Score Method: In the normal course, the participant with the higher score in shortest time span for the given
+               exam
+               track will be shortlisted for next level. However, in the event of two or more participants getting the same score,
+               the
+               one who completes the same in the shortest time will be given priority in selection.
+               Decision of the Organizers in this regard shall be final and cannot be questioned.
+               P.A.Inamdar College of VEDA may at their discretion at any stage change or include additional/ alternative test
+               methods
+               not previously disclosed for the IT Olympiad Online Exams at any or all levels. Participants may request for
+               knowingz
+               latest selection criterion by sending a mail to olympiad@veda-edu.com.
+               The selection criteria of such tests will be announced prior to the date of examination for the applicable level.
+               To ensure wider participation, P.A.Inamdar College of VEDA reserves an absolute and unquestionable right to
+               restrict the
+               number of entries per institute/ testing center in the India finals. No enquiries or petitions in this regard will
+               be
+               entertained.
+               The top 3 scorers in each category from each school or junior college shall be eligible to participate in the final
+               round of the contest.
+               The results of the final round shall be declared on the same day as the final contest at MCE Society, Azam Campus,
+               Pune.
+               Students along with their respective coordinators are expected to be present.
+               The criterion for selecting a winner is the time taken to finish the examination. The candidate with the highest
+               score
+               in the minimum time shall stand selected.
+            </pre>
+          <p style="text-align:right">
+               <button id='startExam' class="btn btn-success" style="box-align: right">Start Exam</button>
+          </p>
+          <br><br>
+          <hr></div> -->
+          <div id='questionbox'>
+               <h2 class='h2' style="text-align: center">Quiz on JavaScripts</h2>
+               <div id='timerval' style="text-align: right"></div>
+               <div class="quiz-container">
+                    <div id="quiz"></div>
+               </div><div>
+                    <button id="previous" class='btn btn-outline-secondary'>Previous Question</button>
+                    <button id="next" class='btn btn-outline-secondary'>Next Question</button>
+                    <button id="end" class='btn btn-outline-secondary'>End Quiz</button>
+                    <button id="submit" class='btn btn-outline-secondary'>Submit Quiz</button>
+               </div>
+              
+          </div>
+          
+       
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+   
+</body>
+
+</html>

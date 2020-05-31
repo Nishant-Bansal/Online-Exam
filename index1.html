@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <H1 style="text-align:center;"><U><align="center">ONLINE EXAM</U></H1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <style>
+      .hide{
+              display:none;
+      }
+    </style>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+     <script src="scripts/utils/firebase.js"></script>
+     <script src="scripts/login.js"></script>
+     <link href="assests/index.css" rel="stylesheet">
+</head>
+<body>
+    <div id="login" class='container'>
+
+            <h1 class='alert-success text-center'>Login Page</h1>
+            <h3 class='alert-danger text-center' id='error'></h3>
+            <div class='form-action'>
+                    <div id='Nbox'>
+                                <input type="radio" name="a" value="admin">TEACHER &nbsp;
+                                <input  type="radio" name="a" value="student">STUDENT<br>
+                </div>
+            </div>
+            <div class='form-group'>
+                    <label for="">Email</label>
+                    <input class='form-control' id='email' type="text"  placeholder='Type user Email here'><br>
+            </div>
+            <div class='form-group'>
+                    <label for="">Password</label>
+                    <input class='form-control' id='password' type='password' placeholder='Type password here'>
+            </div>
+           <div class='form-group'>
+           <button class='btn btn-primary' id='login1'>Login</button> 
+           <button class='btn btn-secondary'onclick="reset()">Reset</button>
+           <button class='btn btn-success'onclick="register()">Register</button>
+           </div>
+    </div>
+     <div id="myForm" class='form-control hide' style="display:none">
+                <h1 class='alert-success text-center'>Register Page</h1>
+        <!-- <div id= "divCheckbox" style="visibility: hidden; display:block;"> -->
+         <div class='form-group'>
+           <label for="">Email</label>
+           <input class='form-control one' id='remail' type="text"  placeholder='Type user Email here'><br>
+         </div>
+         <div class='form-group'>
+           <label for="">Password</label>
+           <input class='form-control one' id='rpassword1' type='password' placeholder='Type password here'>
+         </div>
+         <div class='form-group'>
+            <label for="">Confirm-Password</label>
+            <input class='form-control one' id='rconfirmpassword' type='password' placeholder='Type confirm password here'>
+         </div>
+         <button class='btn btn-secondary'onclick="doreset()">Reset</button>
+         <button id="register" class='btn btn-info' onclick="doRegister()">REGISTER</button>
+     </div>
+</body>
+</html>
